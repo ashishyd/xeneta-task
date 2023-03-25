@@ -1,0 +1,36 @@
+version: '3.9'
+
+services:
+  pythonapp:
+    container_name: pythonapp
+    image: pythonapp
+    build: .
+    ports:
+      - '80:80'
+    volumes:
+      - .:/app
+    environment:
+      - DB_HOST=db
+      - DB_NAME=rates
+      - DB_USER=postgres
+      - DB_PASS=ratestask
+    depends_on:
+      - db
+  db:
+    container_name: db
+    build: ./db
+    volumes:
+      - dev-db-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=rates
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=ratestask
+  lint:
+    build: .
+    volumes:
+      - .:/app
+    command: "flake8 ."
+    depends_on:
+      - pythonapp
+volumes:
+  dev-db-data:
