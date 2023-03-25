@@ -16,6 +16,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Test
-        run: docker-compose run pythonapp pytest
+        run: docker-compose up -d db && docker-compose run pythonapp pytest
       - name: Lint
         run: docker-compose run lint
