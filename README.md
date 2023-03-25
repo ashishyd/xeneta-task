@@ -35,3 +35,13 @@ To run the flask app
 
 To cleanup the container
 `docker-compose down`
+
+### CI/CD
+
+Github action for Test and Lint
+
+## Outputs
+
+Please use postman json collection to try the api after all the docker app is running
+
+![Output](https://github.com/ashishyd/xeneta-task/blob/main/Screenshot%202023-03-25%20at%2012.08.46%20PM.png)
